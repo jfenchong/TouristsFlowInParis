@@ -352,9 +352,12 @@ public class TouristFlow extends PApplet {
             }
             
     
-            String cmd = "/usr/local/bin/ffmpeg -r "+App.cf.videoDuration+" -b "+App.cf.videoQuality+" -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
+            String cmd = "/usr/local/bin/ffmpeg -r "+App.cf.videoFramerate+" -b "+App.cf.videoBitrate+" -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
             try {
                Runtime.getRuntime().exec(cmd);
+               if (App.cf.supprimerCapturesApresVideo) {
+                   //Runtime.getRuntime().exec("rm "+App.cf.capturesVideoPrefix+"*.jpg");
+               }
             } catch (IOException exc) {
               exc.printStackTrace();  
               System.out.println("");

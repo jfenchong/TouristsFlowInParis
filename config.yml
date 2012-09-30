@@ -17,11 +17,15 @@ capturesPrefix: "./captures/tourist_flows-31-March-2009_"
 # chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
 capturesVideoPrefix: "./captures/video/video_tourist_flows-31-March-2009-"
 
-# duree de la video, en secondes
-videoDuration: 20
+# images par seconde
+videoFramerate: 2
 
 # qualite de la video - devrait rester a 1800 normalement
-videoQuality: 1800
+videoBitrate: 1200
+
+# supprimer automatiquement les captures apres la video ?
+supprimerCapturesApresVideo: false
+
 
 # icone utilise pour la heatmap
 heatMapSprite: "./ressources/ppp.png"

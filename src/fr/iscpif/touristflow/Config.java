@@ -70,9 +70,11 @@ public final class Config {
     public final Integer maxZoom;
     public final Integer minZoom;
     
-    public final Integer videoDuration;
+    public final Integer videoFramerate;
     
-    public final Integer videoQuality;
+    public final Integer videoBitrate;
+    
+    public final Boolean supprimerCapturesApresVideo;
     
     public Config(String path) {
         Map map = new HashMap();
@@ -124,18 +126,23 @@ public final class Config {
             capturesVideoPrefix = "";
         }
         
-              if (map.containsKey("videoDuration")) {
-            videoDuration = (Integer) map.get("videoDuration");
+        if (map.containsKey("videoFramerate")) {
+            videoFramerate = (Integer) map.get("videoFramerate");
         } else {
-            videoDuration = 10;
+            videoFramerate = 1;
         }
               
-        if (map.containsKey("videoQuality")) {
-            videoQuality = (Integer) map.get("videoQuality");
+        if (map.containsKey("videoBitrate")) {
+            videoBitrate = (Integer) map.get("videoBitrate");
         } else {
-            videoQuality = 10;
+            videoBitrate = 1800;
         }
         
+        if (map.containsKey("supprimerCapturesApresVideo")) {
+            supprimerCapturesApresVideo = (Boolean) map.get("supprimerCapturesApresVideo");
+        } else {
+            supprimerCapturesApresVideo = false;
+        }
        
         if (map.containsKey("writeArrowsPrefix")) {
             writeArrowsPrefix = (String) map.get("writeArrowsPrefix");

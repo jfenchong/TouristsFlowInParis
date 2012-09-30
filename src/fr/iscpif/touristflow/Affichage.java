@@ -1042,6 +1042,9 @@ public class Affichage {
             }
         }
 
+        if (!App.db.getShowLegend()) {
+            return;
+        }
 
         // coordonnées du rectangle de base 
         float x = p.width / 70;
