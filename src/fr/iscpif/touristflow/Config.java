@@ -54,6 +54,8 @@ public final class Config {
     public final Float initialLat;
     public final Float initialLon;
     public final Integer initialZoom;
+    
+    public final String roamingBTScsvSeparator;
  
     public final Integer screenWidth;
     
@@ -85,6 +87,13 @@ public final class Config {
         } else {
             nbRoamingBTSmoy = "";
         }
+        
+        if (map.containsKey("roamingBTScsvSeparator")) {
+            roamingBTScsvSeparator = (String) map.get("roamingBTScsvSeparator");
+        } else {
+            roamingBTScsvSeparator = ";";
+        }
+        
         
         if (map.containsKey("heatMapSprite")) {
             heatMapSprite = (String) map.get("heatMapSprite");

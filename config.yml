@@ -1,11 +1,14 @@
 # chaine prefixe du chemin vers les graphes
-inputGraphPrefix: "/Users/jfenchong/Documents/these/données/francais/gexf/fr_03_31_"
+inputGraphPrefix: "/Users/jfenchong/Documents/these/données/gexf_roam"
 
 # ?
-nbRoamingBTSmoy: "/Volumes/LILI/donnees/francais/nd_fr_bts/nb_fr_bts_03_31.csv"
+nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/données/nb_roam_03_31.csv"
+
+# separateur de colonnes pour le csv "nbRoamingBTSmoy"
+roamingBTScsvSeparator: ";"
 
 # chemin de sortie des captures (préfixe)
-capturesPrefix: "./captures/touristflows31-March-2009-num_"
+capturesPrefix: "./captures/tourist_flows-31-March-2009-num_"
 
 
 # icone utilise pour la heatmap

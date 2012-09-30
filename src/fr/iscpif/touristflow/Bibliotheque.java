@@ -549,9 +549,9 @@ public class Bibliotheque {
             int count = lines.length;
             mat = new float[27][count];
             for (int i = 1; i < lines.length; i++) {
-                String[] mots = PApplet.split(lines[i], ';');
+                String[] mots = PApplet.split(lines[i], App.cf.roamingBTScsvSeparator);
                 for (int j = 0; j < mots.length; j++) {
-                    mat[j][i - 1] = Float.parseFloat(mots[j]);
+                    mat[j][i - 1] = Float.parseFloat(mots[j].replaceAll("\"",""));
                 }
             }
         } catch (Exception erreur1) {
