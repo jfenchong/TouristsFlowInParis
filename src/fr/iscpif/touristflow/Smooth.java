@@ -99,7 +99,7 @@ public class Smooth {
      * On transforme alors les scores en couleurs
      * Tant que la carte n'est pas déplacée on ne refait pas les calculs
      */
-     public static void lissage() {
+    public static void lissage() {
         PApplet p = App.db.getPApplet();
         int cpt = 0;
         if (App.db.isDraged()) {
@@ -118,15 +118,15 @@ public class Smooth {
 
         float maxValue = 0f;
         /*
-        for (int i = 0; i < buff1[0].length; i++) {
-            if (buff1[0][i] != -1) {
-                if (buff1Score[cpt] > maxValue) {
-                    maxValue = buff1Score[cpt];
-                }
-                cpt++;
-            }
-        }
-        * */
+         for (int i = 0; i < buff1[0].length; i++) {
+         if (buff1[0][i] != -1) {
+         if (buff1Score[cpt] > maxValue) {
+         maxValue = buff1Score[cpt];
+         }
+         cpt++;
+         }
+         }
+         * */
         maxValue = App.db.getNodeMax();
 
         p.noStroke();
@@ -135,31 +135,26 @@ public class Smooth {
             if (buff1[0][i] != -1) {
 
                 float percent = 0;
-                
+
                 if (buff1Score[cpt] <= maxValue) {
-                percent = p.norm(buff1Score[cpt], 0f, maxValue);//On attribut une color à nos petits carrés en fonction du résultat de la méthode
+                    percent = p.norm(buff1Score[cpt], 0f, maxValue);//On attribut une color à nos petits carrés en fonction du résultat de la méthode
                 } else {
                     percent = 1.0f;
                 }
                 int c = 0;
                 int opacity = 0;
-                if (false) {
-                    if (percent > 0.16) {
-                        c = p.color(189, 73, 50);
-                    } else if (percent > 0.12) {
-                        c = p.color(219, 158, 54);
-                    } else if (percent > 0.07) {
-                        c = p.color(255, 250, 213);
+
+                //float inter = map(i, y, y+h, 0, 1);
+                //c = p.lerpColor(startColor, endColor, percent);
+                c = endColor;
+                if (percent > 0.001) {
+                    if (percent <= 1) {
+                        opacity = Math.round(p.lerp(1, 255, percent));
                     } else {
-                        c = p.color(116, 162, 207);
-                    }
-                } else {
-                    //float inter = map(i, y, y+h, 0, 1);
-                    c = p.lerpColor(startColor, endColor, percent);
-                    if (percent > 0.01) {
-                        opacity = Math.round(p.lerp(5, 255, percent));
+                        opacity = 255;
                     }
                 }
+
                 p.fill(c, opacity);
                 p.rect(buff1[0][i], buff1[1][i], 3, 3);
 

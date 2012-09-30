@@ -11,8 +11,11 @@ nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/données/nb_roam_03_31.csv"
 # separateur de colonnes pour le csv "nbRoamingBTSmoy"
 roamingBTScsvSeparator: ";"
 
-# chemin de sortie des captures (préfixe)
-capturesPrefix: "./captures/tourist_flows-31-March-2009-num_"
+# chemin de sortie des captures (préfixe) quand on appuie sur 's'
+capturesPrefix: "./captures/tourist_flows-31-March-2009_"
+
+# chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
+capturesVideoPrefix: "./captures/video/video_tourist_flows-31-March-2009-"
 
 
 # icone utilise pour la heatmap
@@ -49,8 +52,9 @@ maxZoom: 14
 screenWidth: 1200
 screenHeight: 900
 
-heatmapFromColor: [255, 255, 255]
-heatmapFromColor: [189, 73, 50]
+# non utilise
+#heatmapFromColor: [255, 255, 255]
+#heatmapFromColor: [189, 73, 50]
 
 # fond de carte: si useMBTiles est vrai, alors cela utilise le fichier de fond de cartes
 useTiles: true

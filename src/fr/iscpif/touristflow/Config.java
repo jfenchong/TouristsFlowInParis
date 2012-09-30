@@ -47,6 +47,7 @@ public final class Config {
     public final String heatMapSprite;
     public final String arrowsPrefix;
     public final String capturesPrefix;
+    public final String capturesVideoPrefix;    
     public final String writeArrowsPrefix;
     public final Boolean createArrowsFromUrchins;
     public final Boolean useProxy;
@@ -114,7 +115,13 @@ public final class Config {
             capturesPrefix = "";
         }
         
+       if (map.containsKey("capturesVideoPrefix")) {
+            capturesVideoPrefix = (String) map.get("capturesVideoPrefix");
+        } else {
+            capturesVideoPrefix = "";
+        }
         
+       
         if (map.containsKey("writeArrowsPrefix")) {
             writeArrowsPrefix = (String) map.get("writeArrowsPrefix");
         } else {

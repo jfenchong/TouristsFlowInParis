@@ -49,6 +49,7 @@ import de.fhpotsdam.unfolding.Map;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
+import java.io.IOException;
 import javax.script.ScriptException;
 import org.openide.util.Exceptions;
 import processing.core.*;
@@ -336,6 +337,29 @@ public class TouristFlow extends PApplet {
             save(App.cf.capturesPrefix + compteurImage + ".png");
             App.db.setShowLegend(true);
             compteurImage++;
+        }
+        
+        if (key == 'f' || key == 'F') {
+            int comp = 1;
+            App.db.setShowLegend(false);
+            for (int i = 1; i <= 24; i++) {
+                 Temps.setHour(comp);
+                 draw();
+                 save(App.cf.capturesVideoPrefix + comp + ".jpg");
+                  comp++;
+            }
+            String cmd = "ffmpeg -r "+comp+" -b 1800 -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
+            try {
+               Runtime.getRuntime().exec(cmd);
+            } catch (IOException exc) {
+              exc.printStackTrace();  
+              System.out.println("");
+              System.out.println("");
+              System.out.println("Julie, essaye d'install 'ffmpeg' en tapant en ligne de commande:");
+              System.out.println("  - si tu as un mac, tape:   brew install ffmpeg");
+              System.out.println("  - si tu es sous linux, tape:   apt-get install ffmpeg");
+            }
+            App.db.setShowLegend(true);
         }
 
         if (key == '1') {
