@@ -70,6 +70,9 @@ public final class Config {
     public final Integer maxZoom;
     public final Integer minZoom;
     
+    public final Integer videoDuration;
+    
+    public final Integer videoQuality;
     
     public Config(String path) {
         Map map = new HashMap();
@@ -119,6 +122,18 @@ public final class Config {
             capturesVideoPrefix = (String) map.get("capturesVideoPrefix");
         } else {
             capturesVideoPrefix = "";
+        }
+        
+              if (map.containsKey("videoDuration")) {
+            videoDuration = (Integer) map.get("videoDuration");
+        } else {
+            videoDuration = 10;
+        }
+              
+        if (map.containsKey("videoQuality")) {
+            videoQuality = (Integer) map.get("videoQuality");
+        } else {
+            videoQuality = 10;
         }
         
        

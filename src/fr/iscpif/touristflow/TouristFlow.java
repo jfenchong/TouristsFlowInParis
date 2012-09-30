@@ -334,6 +334,7 @@ public class TouristFlow extends PApplet {
             App.db.setShowLegend(false);
         
             draw();
+         
             save(App.cf.capturesPrefix + compteurImage + ".png");
             App.db.setShowLegend(true);
             compteurImage++;
@@ -345,10 +346,13 @@ public class TouristFlow extends PApplet {
             for (int i = 1; i <= 24; i++) {
                  Temps.setHour(comp);
                  draw();
-                 save(App.cf.capturesVideoPrefix + comp + ".jpg");
+                 String filename = String.format(App.cf.capturesVideoPrefix +"%02d.jpg", (comp < 24) ? comp : 0);
+                 save(filename);
                   comp++;
             }
-            String cmd = "ffmpeg -r "+comp+" -b 1800 -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
+            
+    
+            String cmd = "/usr/local/bin/ffmpeg -r "+App.cf.videoDuration+" -b "+App.cf.videoQuality+" -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
             try {
                Runtime.getRuntime().exec(cmd);
             } catch (IOException exc) {
