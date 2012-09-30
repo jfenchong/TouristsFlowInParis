@@ -48,6 +48,7 @@ public final class Config {
     public final String arrowsPrefix;
     public final String capturesPrefix;
     public final String writeArrowsPrefix;
+    public final Boolean createArrowsFromUrchins;
     public final Boolean useProxy;
     public final String proxyHost;
     public final Integer proxyPort;
@@ -118,6 +119,12 @@ public final class Config {
             writeArrowsPrefix = (String) map.get("writeArrowsPrefix");
         } else {
             writeArrowsPrefix = "";
+        }
+        
+        if (map.containsKey("createArrowsFromUrchins")) {
+            createArrowsFromUrchins = (Boolean) map.get("createArrowsFromUrchins");
+        } else {
+            createArrowsFromUrchins = false;
         }
         
              

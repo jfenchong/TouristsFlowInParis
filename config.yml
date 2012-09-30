@@ -24,6 +24,12 @@ arrowsPrefix: "./ressources/Arrow31 March 2009 "
 # attention.. aux.. espaces..
 writeArrowsPrefix: "./Arrow roaming "
 
+# creer fleches depuis oursins?
+# d'apres quentin:
+# mettre a true si l'on veut creer les fleches depuis les oursins
+# sinon mettre false, et ca va charger des fichiers csv deja prepares
+createArrowsFromUrchins: true
+
 # set to true to enable proxy
 useProxy: false
 proxyHost: p-goodway.rd.francetelecom.fr
@@ -43,6 +49,9 @@ maxZoom: 14
 screenWidth: 1200
 screenHeight: 900
 
+heatmapFromColor: [255, 255, 255]
+heatmapFromColor: [189, 73, 50]
+
 # fond de carte: si useMBTiles est vrai, alors cela utilise le fichier de fond de cartes
 useTiles: true
-pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/Idf2.mbtiles"
+pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_toprint.mbtiles"

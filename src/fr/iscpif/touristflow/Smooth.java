@@ -1,50 +1,47 @@
 /*
 
-Copyright : UMR Géographie Cités - Quentin Lobbé (2012)
+ Copyright : UMR Géographie Cités - Quentin Lobbé (2012)
 
-Authors : 
-Quentin Lobbé <quentin.lobbe@gmail.com>
-Julie Fen-Chong <julie.fenchong@gmail.com>
-Julian Bilcke <julian.bilcke@iscpif.fr>
+ Authors : 
+ Quentin Lobbé <quentin.lobbe@gmail.com>
+ Julie Fen-Chong <julie.fenchong@gmail.com>
+ Julian Bilcke <julian.bilcke@iscpif.fr>
 
-This file is a part of TouristsFlowInParis Project
+ This file is a part of TouristsFlowInParis Project
 
-Build with Processing ( Ben Fry, Casey Reas ) ( GNU GPL )
-Build with Unfolding ( Till Nagel, Felix Lange ) ( BSD )
-
-
-This software is a computer program whose purpose is to manipulate, 
-explore and visualize large graphs of flow through time and space .
-This software is governed by the CeCILL license under French law and 
-abiding by the rules of distribution of free software. You can use, 
-modify and/ or redistribute the software under the terms of the CeCILL 
-license as circulated by CEA, CNRS and INRIA at the following URL 
-"http://www.cecill.info".
+ Build with Processing ( Ben Fry, Casey Reas ) ( GNU GPL )
+ Build with Unfolding ( Till Nagel, Felix Lange ) ( BSD )
 
 
-As a counterpart to the access to the source code and rights to copy, 
-modify and redistribute granted by the license, users are provided only with a 
-limited warranty and the software's author, the holder of the economic rights, 
-and the successive licensors have only limited liability.
+ This software is a computer program whose purpose is to manipulate, 
+ explore and visualize large graphs of flow through time and space .
+ This software is governed by the CeCILL license under French law and 
+ abiding by the rules of distribution of free software. You can use, 
+ modify and/ or redistribute the software under the terms of the CeCILL 
+ license as circulated by CEA, CNRS and INRIA at the following URL 
+ "http://www.cecill.info".
 
 
-In this respect, the user's attention is drawn to the risks associated with loading, 
-using, modifying and/or developing or reproducing the software by the user in light 
-of its specific status of free software, that may mean that it is complicated to manipulate, 
-and that also therefore means that it is reserved for developers and experienced professionals 
-having in-depth computer knowledge. Users are therefore encouraged to load and test 
-the software's suitability as regards their requirements in conditions enabling the security 
-of their systems and/or data to be ensured and, more generally, to use and operate it in 
-the same conditions as regards security.
+ As a counterpart to the access to the source code and rights to copy, 
+ modify and redistribute granted by the license, users are provided only with a 
+ limited warranty and the software's author, the holder of the economic rights, 
+ and the successive licensors have only limited liability.
 
 
-The fact that you are presently reading this means that you have had knowledge of the CeCILL 
-license and that you accept its terms.
+ In this respect, the user's attention is drawn to the risks associated with loading, 
+ using, modifying and/or developing or reproducing the software by the user in light 
+ of its specific status of free software, that may mean that it is complicated to manipulate, 
+ and that also therefore means that it is reserved for developers and experienced professionals 
+ having in-depth computer knowledge. Users are therefore encouraged to load and test 
+ the software's suitability as regards their requirements in conditions enabling the security 
+ of their systems and/or data to be ensured and, more generally, to use and operate it in 
+ the same conditions as regards security.
+
+
+ The fact that you are presently reading this means that you have had knowledge of the CeCILL 
+ license and that you accept its terms.
  
  */
-
-
-
 package fr.iscpif.touristflow;
 
 import java.util.ArrayList;
@@ -84,7 +81,7 @@ public class Smooth {
         buff1Score = new float[p.width * p.height / 8];
         for (int k = 0; k < buff1Score.length; k++) {
             buff1Score[k] = -1;
-        } 
+        }
         while (arrowsINsmooth.size() > 0) {
             arrowsINsmooth.remove(0);
         }
@@ -102,7 +99,7 @@ public class Smooth {
      * On transforme alors les scores en couleurs
      * Tant que la carte n'est pas déplacée on ne refait pas les calculs
      */
-    public static void lissage() {
+     public static void lissage() {
         PApplet p = App.db.getPApplet();
         int cpt = 0;
         if (App.db.isDraged()) {
@@ -116,30 +113,56 @@ public class Smooth {
         cpt = 0;
 
 
+        int startColor = p.color(255, 255, 255);
+        int endColor = p.color(255, 0, 0);
+
+        float maxValue = 0f;
+        /*
         for (int i = 0; i < buff1[0].length; i++) {
             if (buff1[0][i] != -1) {
-                p.noStroke();
-                float percent = 0;
-                percent = PApplet.norm(buff1Score[cpt], 1, App.db.getNodeMax());//On attribut une color à nos petits carrés en fonction du résultat de la méthode
-
-                if (percent > 0.16) {
-                    int c = p.color(189, 73, 50);
-                    p.fill(c, 100);
-                    p.rect(buff1[0][i], buff1[1][i], 3, 3);
-                } else if (percent > 0.12) {
-                    int c = p.color(219, 158, 54);
-                    p.fill(c, 100);
-                    p.rect(buff1[0][i], buff1[1][i], 3, 3);
-                } else if (percent > 0.07) {
-                    int c = p.color(255, 250, 213);
-                    p.fill(c, 100);
-                    p.rect(buff1[0][i], buff1[1][i], 3, 3);
-                } else {
-                    //int c = p.color(16, 91, 99);
-                    int c = p.color(116, 162, 207);
-                    p.fill(c, 100);
-                    p.rect(buff1[0][i], buff1[1][i], 3, 3);
+                if (buff1Score[cpt] > maxValue) {
+                    maxValue = buff1Score[cpt];
                 }
+                cpt++;
+            }
+        }
+        * */
+        maxValue = App.db.getNodeMax();
+
+        p.noStroke();
+        cpt = 0;
+        for (int i = 0; i < buff1[0].length; i++) {
+            if (buff1[0][i] != -1) {
+
+                float percent = 0;
+                
+                if (buff1Score[cpt] <= maxValue) {
+                percent = p.norm(buff1Score[cpt], 0f, maxValue);//On attribut une color à nos petits carrés en fonction du résultat de la méthode
+                } else {
+                    percent = 1.0f;
+                }
+                int c = 0;
+                int opacity = 0;
+                if (false) {
+                    if (percent > 0.16) {
+                        c = p.color(189, 73, 50);
+                    } else if (percent > 0.12) {
+                        c = p.color(219, 158, 54);
+                    } else if (percent > 0.07) {
+                        c = p.color(255, 250, 213);
+                    } else {
+                        c = p.color(116, 162, 207);
+                    }
+                } else {
+                    //float inter = map(i, y, y+h, 0, 1);
+                    c = p.lerpColor(startColor, endColor, percent);
+                    if (percent > 0.01) {
+                        opacity = Math.round(p.lerp(5, 255, percent));
+                    }
+                }
+                p.fill(c, opacity);
+                p.rect(buff1[0][i], buff1[1][i], 3, 3);
+
 
                 cpt++;
             }
@@ -279,13 +302,13 @@ public class Smooth {
             calculScore2();
         }
 
-        for (int i = 0; i < arrowsINsmooth.size() ; i++) {
+        for (int i = 0; i < arrowsINsmooth.size(); i++) {
             Arrow a = (Arrow) arrowsINsmooth.get(i);
             Arrow b = (Arrow) arrowsOUTsmooth.get(i);
             Location l = new Location(a.getX(), a.getY());
             float xy[] = App.db.getMap().getScreenPositionFromLocation(l);
             if ((0 < xy[0]) && (xy[0] < p.width) && (0 < xy[1]) && (xy[1] < p.height)) {
-                if (App.db.isIN()) {             
+                if (App.db.isIN()) {
                     a.updateLight();
                 }
                 if (App.db.isOUT()) {
@@ -444,6 +467,4 @@ public class Smooth {
     public static ArrayList getArrowsOUTsmooth() {
         return arrowsOUTsmooth;
     }
-    
-    
 }

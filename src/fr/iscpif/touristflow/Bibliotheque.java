@@ -49,6 +49,7 @@ import processing.core.*;
 import static java.lang.System.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 /**
  *
@@ -497,36 +498,37 @@ public class Bibliotheque {
     }
 
     /*
-     * décommenter cette version de creerArrow et commmenter la suivante s'il on veut créer les flèches depuis les oursins
+     * s'il on veut créer les flèches depuis les oursins
      * sinon on travail sur des fichiers csv préparés
      */
-    /*public static void creerArrow() {
-    
-     creerOursinsVue();
-     for (int z = 0; z < Application.session.getOursins().size(); z++) {
-     Oursin oursin = (Oursin) Application.session.getOursins().get(z);
-     oursin.draw();
-     }
-     effacerOursins();
-    
-     }*/
+
     public static void creerArrow() {
         PApplet p = App.db.getPApplet();
 
+        if (App.cf.createArrowsFromUrchins) {
+            creerOursinsVue();
+            ArrayList<Urchin> urchins = App.db.getUrchins();
+            long size = urchins.size();
+            for (int z = 0; z < size; z++) {
+                Urchin urchin = urchins.get(z);
+                urchin.draw();
+            }
+            effacerOursins();
+        } else {
 
+            String[] lines = p.loadStrings(App.db.getReferencesArrows(App.db.getIndex()));
+            for (int i = 1; i < lines.length; i++) {
 
-        String[] lines = p.loadStrings(App.db.getReferencesArrows(App.db.getIndex()));
-        for (int i = 1; i < lines.length; i++) {
+                String[] mots = PApplet.split(lines[i], ';');
 
-            String[] mots = PApplet.split(lines[i], ';');
+                Arrow a = new Arrow(Float.parseFloat(mots[0]), Float.parseFloat(mots[1]), Float.parseFloat(mots[2]), Float.parseFloat(mots[3]), Float.parseFloat(mots[4]), Float.parseFloat(mots[5]), Float.parseFloat(mots[6]), Float.parseFloat(mots[7]), Boolean.parseBoolean(mots[8]));
+                out.println("flèche " + i + " créée");
 
-            Arrow a = new Arrow(Float.parseFloat(mots[0]), Float.parseFloat(mots[1]), Float.parseFloat(mots[2]), Float.parseFloat(mots[3]), Float.parseFloat(mots[4]), Float.parseFloat(mots[5]), Float.parseFloat(mots[6]), Float.parseFloat(mots[7]), Boolean.parseBoolean(mots[8]));
-            out.println("flèche " + i + " créée");
-
-            if (Boolean.parseBoolean(mots[8])) {
-                App.db.arrowsIN.add(a);
-            } else {
-                App.db.arrowsOUT.add(a);
+                if (Boolean.parseBoolean(mots[8])) {
+                    App.db.arrowsIN.add(a);
+                } else {
+                    App.db.arrowsOUT.add(a);
+                }
             }
         }
     }
@@ -551,11 +553,11 @@ public class Bibliotheque {
             for (int i = 1; i < lines.length; i++) {
                 String[] mots = PApplet.split(lines[i], App.cf.roamingBTScsvSeparator);
                 for (int j = 0; j < mots.length; j++) {
-                    mat[j][i - 1] = Float.parseFloat(mots[j].replaceAll("\"",""));
+                    mat[j][i - 1] = Float.parseFloat(mots[j].replaceAll("\"", ""));
                 }
             }
         } catch (Exception erreur1) {
-            System.err.append("erreur lors du chargement du csv de roaming bts moy: "+erreur1);
+            System.err.append("erreur lors du chargement du csv de roaming bts moy: " + erreur1);
             mat = new float[27][0];
         }
         return mat;

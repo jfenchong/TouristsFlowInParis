@@ -210,7 +210,7 @@ public class Affichage {
     }
 
     // affiche la légende de la carte lissée 
-    public static void afficheLegendeLissee() {
+    public static void afficheCarteEtLegendeLissee() {
         PApplet p = App.db.getPApplet();
 
         // coordo du rectangle de base
@@ -232,6 +232,8 @@ public class Affichage {
             Smooth.lissage();
 
 
+            if (! App.db.getShowLegend()) return;
+            
             //rectangle de base 
             p.textAlign(PConstants.LEFT, PConstants.TOP);
             p.strokeWeight(2);
@@ -325,6 +327,8 @@ public class Affichage {
     public static void afficheLegendeNodeEdge() {
         PApplet p = App.db.getPApplet();
 
+        if (App.db.getShowLegend()) return;
+        
         // coordonnées du rectangle de base
         float x = p.width / 70;
         float y = p.height - 320;
@@ -437,6 +441,8 @@ public class Affichage {
     // affiche légende en mode heat map  
     public static void afficheLegendeHeatMap() {
         PApplet p = App.db.getPApplet();
+        
+        if (!App.db.getShowLegend()) return;
 
         // coordonnées du rectangle de base 
         float x = p.width / 70;
@@ -452,8 +458,8 @@ public class Affichage {
         p.noFill();
 
         // dégradé 
-        int to = p.color(189, 73, 50);
-        int from = p.color(255);
+        int to = p.color(255, 0, 0);
+        int from = p.color(255, 255, 255);
         for (int i = (int) x + 38; i < x + 38 + 100; i++) {
             float d = PApplet.dist(i, y, x + 38 + 100, y);
             d = 100 - d;
@@ -921,6 +927,8 @@ public class Affichage {
     public static void afficheCluster() {
         PApplet p = App.db.getPApplet();
 
+        if (!App.db.getShowLegend()) return;
+        
         // coordonnées du rectangle
         float x = p.width - 250;
         float y = p.height / 18;

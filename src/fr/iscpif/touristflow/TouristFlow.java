@@ -1,50 +1,47 @@
 /*
 
-Copyright : UMR Géographie Cités - Quentin Lobbé (2012)
+ Copyright : UMR Géographie Cités - Quentin Lobbé (2012)
 
-Authors : 
-Quentin Lobbé <quentin.lobbe@gmail.com>
-Julie Fen-Chong <julie.fenchong@gmail.com>
-Julian Bilcke <julian.bilcke@iscpif.fr>
+ Authors : 
+ Quentin Lobbé <quentin.lobbe@gmail.com>
+ Julie Fen-Chong <julie.fenchong@gmail.com>
+ Julian Bilcke <julian.bilcke@iscpif.fr>
 
-This file is a part of TouristsFlowInParis Project
+ This file is a part of TouristsFlowInParis Project
 
-Build with Processing ( Ben Fry, Casey Reas ) ( GNU GPL )
-Build with Unfolding ( Till Nagel, Felix Lange ) ( BSD )
-
-
-This software is a computer program whose purpose is to manipulate, 
-explore and visualize large graphs of flow through time and space .
-This software is governed by the CeCILL license under French law and 
-abiding by the rules of distribution of free software. You can use, 
-modify and/ or redistribute the software under the terms of the CeCILL 
-license as circulated by CEA, CNRS and INRIA at the following URL 
-"http://www.cecill.info".
+ Build with Processing ( Ben Fry, Casey Reas ) ( GNU GPL )
+ Build with Unfolding ( Till Nagel, Felix Lange ) ( BSD )
 
 
-As a counterpart to the access to the source code and rights to copy, 
-modify and redistribute granted by the license, users are provided only with a 
-limited warranty and the software's author, the holder of the economic rights, 
-and the successive licensors have only limited liability.
+ This software is a computer program whose purpose is to manipulate, 
+ explore and visualize large graphs of flow through time and space .
+ This software is governed by the CeCILL license under French law and 
+ abiding by the rules of distribution of free software. You can use, 
+ modify and/ or redistribute the software under the terms of the CeCILL 
+ license as circulated by CEA, CNRS and INRIA at the following URL 
+ "http://www.cecill.info".
 
 
-In this respect, the user's attention is drawn to the risks associated with loading, 
-using, modifying and/or developing or reproducing the software by the user in light 
-of its specific status of free software, that may mean that it is complicated to manipulate, 
-and that also therefore means that it is reserved for developers and experienced professionals 
-having in-depth computer knowledge. Users are therefore encouraged to load and test 
-the software's suitability as regards their requirements in conditions enabling the security 
-of their systems and/or data to be ensured and, more generally, to use and operate it in 
-the same conditions as regards security.
+ As a counterpart to the access to the source code and rights to copy, 
+ modify and redistribute granted by the license, users are provided only with a 
+ limited warranty and the software's author, the holder of the economic rights, 
+ and the successive licensors have only limited liability.
 
 
-The fact that you are presently reading this means that you have had knowledge of the CeCILL 
-license and that you accept its terms.
+ In this respect, the user's attention is drawn to the risks associated with loading, 
+ using, modifying and/or developing or reproducing the software by the user in light 
+ of its specific status of free software, that may mean that it is complicated to manipulate, 
+ and that also therefore means that it is reserved for developers and experienced professionals 
+ having in-depth computer knowledge. Users are therefore encouraged to load and test 
+ the software's suitability as regards their requirements in conditions enabling the security 
+ of their systems and/or data to be ensured and, more generally, to use and operate it in 
+ the same conditions as regards security.
+
+
+ The fact that you are presently reading this means that you have had knowledge of the CeCILL 
+ license and that you accept its terms.
  
  */
-
-
-
 package fr.iscpif.touristflow;
 
 import java.util.Properties;
@@ -68,7 +65,6 @@ public class TouristFlow extends PApplet {
      */
     float zoom;
     boolean ok = false;
-    boolean showLegend = true;
 
     public static void main(String[] args) {
         // must match the name of your class ie "letsp5.Main" = packageName.className 
@@ -79,41 +75,41 @@ public class TouristFlow extends PApplet {
     public void setup() {
         App.db.setPApplet(this);
         App.cf.fonts.recreateUsing(this);
-        
+
         //size(1200, 979);
         size(App.cf.screenWidth, App.cf.screenHeight);
-        
+
         MouseHandlerCustom.setWidth(width);
         MouseHandlerCustom.setHeight(height);
 
         //Si l'on se sert d'un proxy, décommenter et ajouter le nom du proxy  
         Properties props = System.getProperties();
-        if (App.cf.useProxy) {       
-          props.put("http.proxyHost", App.cf.proxyHost);
-          props.put("http.proxyPort", App.cf.proxyPort);
+        if (App.cf.useProxy) {
+            props.put("http.proxyHost", App.cf.proxyHost);
+            props.put("http.proxyPort", App.cf.proxyPort);
         }
 
         final Map map;
-        
+
         if (App.cf.useTiles) {
-           map = new Map(this, 0, 0, width, height, new MBTilesMapProvider(App.cf.pathToTiles));
+            map = new Map(this, 0, 0, width, height, new MBTilesMapProvider(App.cf.pathToTiles));
         } else {
-           map = new de.fhpotsdam.unfolding.Map(this);   
+            map = new de.fhpotsdam.unfolding.Map(this);
         }
-        
+
         App.db.setMap(map);
         map.setZoomRange(App.cf.minZoom, App.cf.maxZoom);
         App.db.map.zoomAndPanTo(new Location(App.cf.initialLat, App.cf.initialLon), App.cf.initialZoom);// position de départ de la carte 
         MapUtilsCustom.createDefaultEventDispatcherCustom(this, map);
         //Application.session.getMap().
- 
+
         //initialiser la date courante de la carte
         Temps.setupDates();
         //charger les gexf
         Bibliotheque.loadGraph();
 
         // les info sur les noeuds et edges sont stockés dans 2 matrices
-        System.out.println("maxEdge: "+App.db.getMaxEdgeTotal());
+        System.out.println("maxEdge: " + App.db.getMaxEdgeTotal());
         App.db.setMatEdge(new float[5][(int) App.db.getMaxEdgeTotal()]);
         App.db.setMatNode();
         // on réserve de la place pour le mode sélection et oursins
@@ -128,7 +124,7 @@ public class TouristFlow extends PApplet {
         Bibliotheque.effectif("node");
 
         // chargement du points pour le heatmap
-        
+
         App.db.setMyPoints(loadImage(App.cf.heatMapSprite));
 
         smooth();
@@ -184,9 +180,9 @@ public class TouristFlow extends PApplet {
 
         // charger les liens vers les csv contenant les info sur les flêches d'anisotropie
         App.db.setReferencesArrows(new String[25]);
-        
-        for (int i=0;i<24;i++) {
-            App.db.setReferencesArrows(i, App.cf.arrowsPrefix + nf(i, 2)+"h.csv");
+
+        for (int i = 0; i < 24; i++) {
+            App.db.setReferencesArrows(i, App.cf.arrowsPrefix + nf(i, 2) + "h.csv");
         }
 
         Affichage.setTemp(0);
@@ -263,10 +259,11 @@ public class TouristFlow extends PApplet {
         stroke(255);
         fill(255);
         strokeWeight(2);
-        if (showLegend) Affichage.afficheEchelle();
+        if (App.db.getShowLegend()) {
+            Affichage.afficheEchelle();
+        }
 
         noStroke();
-        if (showLegend) {
 
         // affiche la légende en mode edge ou node 
         if ((!App.db.isHeat()) && (!App.db.isChaud()) && (!App.db.isArrow())) {
@@ -275,7 +272,7 @@ public class TouristFlow extends PApplet {
 
         // affiche la légende en mode lissée
         if ((App.db.isHeat()) && (!App.db.isChaud())) {
-            Affichage.afficheLegendeLissee();
+            Affichage.afficheCarteEtLegendeLissee();
         }
 
         // affiche la légende en mode heatMap
@@ -287,16 +284,16 @@ public class TouristFlow extends PApplet {
         if (App.db.isOursin()) {
             Affichage.afficheCluster();
         }
-        }
+
 
         ellipseMode(CENTER);
 
-        if (showLegend) {
-        // dessiner les boutons du menu
-        for (int i = 0; i < App.db.getBoutons().size(); i++) {
-            BoutonMenu boutonMenu = (BoutonMenu) App.db.getBoutons().get(i);
-            boutonMenu.draw();
-        }
+        if (App.db.getShowLegend()) {
+            // dessiner les boutons du menu
+            for (int i = 0; i < App.db.getBoutons().size(); i++) {
+                BoutonMenu boutonMenu = (BoutonMenu) App.db.getBoutons().get(i);
+                boutonMenu.draw();
+            }
         }
 
         // dessiner les oursins crées  
@@ -322,8 +319,8 @@ public class TouristFlow extends PApplet {
         //text(location.toString(), mouseX, mouseY);
 
         /*if ( ok ){
-        Redistribution.printGrille();
-        }*/
+         Redistribution.printGrille();
+         }*/
 
     }
     // compteur pour les captures
@@ -333,10 +330,11 @@ public class TouristFlow extends PApplet {
     public void keyReleased() {
         // capture écran
         if (key == 's' || key == 'S') {
-            showLegend=false;
+            App.db.setShowLegend(false);
+        
             draw();
             save(App.cf.capturesPrefix + compteurImage + ".png");
-            showLegend=true;
+            App.db.setShowLegend(true);
             compteurImage++;
         }
 
@@ -345,10 +343,10 @@ public class TouristFlow extends PApplet {
             //Redistribution.Agreger();
             Bibliotheque.writeArrowData();
         }
-        
+
         // lancer l'export en shape 
         if (key == '2') {
-           ShapeFileCreator shape = new ShapeFileCreator();
+            ShapeFileCreator shape = new ShapeFileCreator();
             try {
                 shape.export();
             } catch (ScriptException ex) {

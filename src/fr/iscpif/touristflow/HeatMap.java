@@ -61,6 +61,9 @@ public class HeatMap {
       App.db.getMyPoints().loadPixels();
       PImage buffer = App.db.getMyPoints(); // nous travaillons sur un buffer, une copie de l'image d'origine pour plus de souplesse
       buffer.loadPixels(); // afin de les modifier il faut charger tous les pixels de l'image
+      
+      // problème le max dépend de l'algorithme utilisé.. pff pas clair ce code,
+      // il faudrait revoir tout le calcul des min max..
       float percent = PApplet.norm( degree, App.db.getNodeMin(), App.db.getNodeMax());
       //int from = p.color (189, 73, 50);
       //int to = p.color(255, 255, 255);

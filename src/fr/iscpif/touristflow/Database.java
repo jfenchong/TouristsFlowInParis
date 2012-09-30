@@ -163,6 +163,8 @@ public class Database {
     boolean IN = true;
     boolean OUT = true;
 
+    boolean showLegend = true;
+      
     // Définition de constantes pour le calcul des Min et Max 
     float nodeMin = PConstants.MAX_FLOAT;
     float nodeMax = PConstants.MIN_FLOAT;
@@ -212,7 +214,7 @@ public class Database {
         return Boutons;
     }
     
-    public ArrayList getUrchins() {
+    public ArrayList<Urchin> getUrchins() {
         return urchins;
     }
 
@@ -456,6 +458,10 @@ public class Database {
     public int getNbMaxEnfants() {
         return nbMaxEnfants;
     }
+    
+    public boolean getShowLegend() {
+        return showLegend;
+    }
 
     public boolean isNode() {
         return node;
@@ -493,6 +499,9 @@ public class Database {
         return select;
     }
 
+    public void setShowLegend(boolean showLegend) {
+        this.showLegend = showLegend;
+    }
     public void setBiweight(boolean Biweight) {
         this.Biweight = Biweight;
     }
