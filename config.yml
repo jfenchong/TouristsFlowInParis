@@ -1,5 +1,6 @@
 # chaine prefixe du chemin vers les graphes
-inputGraphPrefix: "/Users/jfenchong/Documents/these/données/gexf_roam"
+# ATTENTION!!!!! il faut un / a la fin
+inputGraphPrefix: "/Users/jfenchong/Documents/these/données/gexf_roam/"
 
 # ?
 nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/données/nb_roam_03_31.csv"
