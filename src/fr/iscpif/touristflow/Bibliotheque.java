@@ -188,11 +188,11 @@ public class Bibliotheque {
         for (int j = 0; j < App.db.getTableauGephi()[App.db.getIndex()].nodeCount; j++) {
             Location l1 = new Location(App.db.getMatNode(0, j), App.db.getMatNode(1, j));
             float xy1[] = App.db.getMap().getScreenPositionFromLocation(l1);
-            if ((xy1[1] > 0) && (xy1[0] > 0) && (xy1[0] < p.width) && (xy1[1] < p.height) && (App.db.getMatNode(2, j) > 50)) {
+            //if ((xy1[1] > 0) && (xy1[0] > 0) && (xy1[0] < p.width) && (xy1[1] < p.height) && (App.db.getMatNode(2, j) > 50)) {
                 out.println("Création Oursin " + i);
                 Affichage.selectionOursins(xy1[0], xy1[1], App.db.getMatNode(0, j), App.db.getMatNode(1, j));
                 i++;
-            }
+            //}
         }
         out.println("Oursins calculés");
     }
@@ -393,7 +393,7 @@ public class Bibliotheque {
             }
             // sinon on calcul la moyenne des distances et la somme des poids 
             moy = moy / pointCardinal.length;
-            moy = PApplet.map(CoxBoxLambda(moy, (float) 0.4), 0, CoxBoxLambda(App.db.getDistMax(), (float) 0.4), 0, 1500);
+            moy = PApplet.map(CoxBoxLambda(moy, (float) 0.4), 0, CoxBoxLambda(App.db.getDistMax(), (float) 0.4), 0, 10000);
             sum = PApplet.map(PApplet.log(sum), 0, PApplet.log(App.db.getEdgeMax()), (float) 0.5, 15);
 
         }

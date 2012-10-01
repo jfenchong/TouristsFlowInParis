@@ -327,7 +327,7 @@ public class Affichage {
     public static void afficheLegendeNodeEdge() {
         PApplet p = App.db.getPApplet();
 
-        if (App.db.getShowLegend()) return;
+        if (!App.db.getShowLegend()) return;
         
         // coordonnées du rectangle de base
         float x = p.width / 70;
@@ -1020,7 +1020,7 @@ public class Affichage {
         }
 
 
-
+       
         if (drawArrow) {
             // champ de flèches 
             Smooth.lissageArrow();
@@ -1078,6 +1078,7 @@ public class Affichage {
         p.text("créer", x + l / 2, y + 2 * h / 3 + 60);
         //p.text("-",x + l / 2, y + 2 * h / 3 + 90);
         p.text("supprimer", x + l / 2, y + 2 * h / 3 + 90);
+        
         Arrow A1 = new Arrow(x + l / 2 + l / 4 - 10, y + 2 * h / 9 + h / 18 - 5, (float) 2.5,PConstants.PI ,  true);
         Arrow A2 = new Arrow(x + l / 2 - l / 4 + 10, y + h / 9 + h / 18 - 5, (float) 2.5,PConstants.PI ,  false);
         A1.updateLightBis();

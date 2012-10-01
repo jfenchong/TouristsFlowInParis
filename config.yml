@@ -17,11 +17,14 @@ capturesPrefix: "./captures/tourist_flows-31-March-2009_"
 # chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
 capturesVideoPrefix: "./captures/video/video_tourist_flows-31-March-2009-"
 
+# mpg, mp4, avi, ogv
+videoFormat: ogv
+
 # images par seconde
 videoFramerate: 2
 
 # qualite de la video - devrait rester a 1800 normalement
-videoBitrate: 1200
+videoBitrate: 1000
 
 # supprimer automatiquement les captures apres la video ?
 supprimerCapturesApresVideo: false
@@ -67,4 +70,4 @@ screenHeight: 900
 
 # fond de carte: si useMBTiles est vrai, alors cela utilise le fichier de fond de cartes
 useTiles: true
-pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_toprint.mbtiles"
+pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_4.mbtiles"

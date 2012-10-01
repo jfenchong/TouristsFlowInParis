@@ -167,7 +167,7 @@ public class TouristFlow extends PApplet {
         zoom = App.db.getMap().getZoom();
 
         // création des deux curseurs de sélection pour le lissage
-        App.db.setCurseur(new Stick(10, (float) (width / 56 + 165), (float) (height - 150 + 53), App.db.getDmaxSmooth(), (float) (320 - 10 - 165), 0, 1500, (float) 1 / 3));
+        App.db.setCurseur(new Stick(10, (float) (width / 56 + 165), (float) (height - 150 + 53), App.db.getDmaxSmooth(), (float) (320 - 10 - 165), 0, 10000, (float) 1 / 3));
         App.db.setCurseur2(new Stick(10, (float) (width / 56 + 165), (float) (height - 150 + 18), App.db.getP(), (float) (320 - 10 - 165), 0, (float) 1.2, (float) 1 / 3));
         // création des deux curseurs pour le box cox
         App.db.setCurseur3(new Stick(10, (float) (width / 56 + 175 + 30), (float) (height - 245), App.db.getLambdaE(), 115, (float) -1.5, (float) 1.5, (float) 5 / 6));
@@ -193,7 +193,7 @@ public class TouristFlow extends PApplet {
     @Override
     public void draw() {
 
-        background(0);
+        background(255, 255, 255);
         App.db.getMap().draw();
 
         fill(190, 201, 186, 100);
@@ -352,7 +352,7 @@ public class TouristFlow extends PApplet {
             }
             
     
-            String cmd = "/usr/local/bin/ffmpeg -r "+App.cf.videoFramerate+" -b "+App.cf.videoBitrate+" -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video.mp4";
+            String cmd = "/usr/local/bin/ffmpeg -r "+App.cf.videoFramerate+" -b "+App.cf.videoBitrate+" -i "+App.cf.capturesVideoPrefix+"%02d.jpg "+App.cf.capturesVideoPrefix+"video."+App.cf.videoFormat;
             try {
                Runtime.getRuntime().exec(cmd);
                if (App.cf.supprimerCapturesApresVideo) {

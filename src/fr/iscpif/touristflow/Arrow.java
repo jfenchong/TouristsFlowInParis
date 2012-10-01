@@ -57,17 +57,17 @@ import static java.lang.System.*;
 public class Arrow {
 
     // coordonnées de la source de la flèche
-    public float x, y;
+    public float x = 0, y = 0;
     // cordonnées de la cible de la flèche
-    public float _x, _y;
+    public float _x = 0, _y = 0;
     // taille en xi et en yi
-    public float xi, yi;
+    public float xi = 0, yi = 0;
     // taille de la flèche, fonction du niveau de zoom 
-    public float size;
+    public float size = 0;
     // angle de la flèche 
-    public float angle;
+    public float angle = 0;
     // true = entrant , false = sortant
-    boolean sens;
+    boolean sens = false;
     // utilisé seulement dans le cadre d'une flèche simple
     float taille = 0;
     
@@ -119,9 +119,11 @@ public class Arrow {
         p.pushMatrix();
         p.translate(xy[0], xy[1]);
         p.rotate(angle);
-        p.strokeWeight((float) 0.5);
+        p.strokeWeight(0.0f);//p.strokeWeight((float) 0.5);
         p.stroke(0);       
-        p.scale(size);
+        //p.scale(size);
+        float t = PApplet.map(size, 0, 5, 0, App.db.getArrowsMax());  
+        p.scale(t);
         if (sens) {
             p.fill(16, 91, 136);
             p.beginShape();
@@ -147,6 +149,7 @@ public class Arrow {
         }
         p.popMatrix();
         p.noFill();
+        p.strokeWeight(0.5f);
     }
     
     // cette fonction dessine, oriente et grossit la flèche "simple" 
@@ -156,7 +159,7 @@ public class Arrow {
         PApplet p = App.db.getPApplet();
         p.pushMatrix();
         p.translate(xy[0], xy[1]);  
-        p.strokeWeight((float) 0.5);
+        p.strokeWeight(0.0f);//p.strokeWeight((float) 0.5);
         p.stroke(0);
         float t = PApplet.map(taille, 0, 5, 0, App.db.getArrowsMax());  
         p.scale(t);
@@ -187,6 +190,7 @@ public class Arrow {
         }
         p.popMatrix();
         p.noFill();
+        p.strokeWeight(0.5f);
     }
     
     // fonction de dessin pour les flèches de la légende
@@ -195,9 +199,11 @@ public class Arrow {
         p.pushMatrix();
         p.translate(x, y);  
         p.rotate(angle);
-        p.strokeWeight((float) 0.5);
+        p.strokeWeight(0.0f);
         p.stroke(0);
         p.scale(taille);
+        //float t = PApplet.map(taille, 0, 5, 0, App.db.getArrowsMax());  
+        // p.scale(t);
         if (sens) {
             p.fill(16, 91, 136);
             p.beginShape();
@@ -223,6 +229,7 @@ public class Arrow {
         }
         p.popMatrix();
         p.noFill();
+        p.strokeWeight(0.5f);
     }
     
     public float getSize(){

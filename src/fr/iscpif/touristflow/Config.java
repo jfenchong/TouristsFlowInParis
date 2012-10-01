@@ -71,7 +71,7 @@ public final class Config {
     public final Integer minZoom;
     
     public final Integer videoFramerate;
-    
+    public final String videoFormat;
     public final Integer videoBitrate;
     
     public final Boolean supprimerCapturesApresVideo;
@@ -131,7 +131,14 @@ public final class Config {
         } else {
             videoFramerate = 1;
         }
-              
+            
+                
+        if (map.containsKey("videoFormat")) {
+            videoFormat = (String) map.get("videoFormat");
+        } else {
+            videoFormat = "mp4";
+        }
+            
         if (map.containsKey("videoBitrate")) {
             videoBitrate = (Integer) map.get("videoBitrate");
         } else {
