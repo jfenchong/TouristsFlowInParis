@@ -3,19 +3,19 @@
 # Prefixe.
 # PREFIXE
 # ok?
-inputGraphPrefix: "/Users/jfenchong/Documents/these/données/gexf_roam/roaming_03_31_"
+inputGraphPrefix: "/Users/jfenchong/Documents/these/donnees/francais/gexf/fr_03_31_"
 
 # ?
-nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/données/nb_roam_03_31.csv"
+nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/donnees/francais/nb_ind_bts/nb_fr_bts_03_31.csv"
 
 # separateur de colonnes pour le csv "nbRoamingBTSmoy"
 roamingBTScsvSeparator: ";"
 
 # chemin de sortie des captures (préfixe) quand on appuie sur 's'
-capturesPrefix: "./captures/tourist_flows-31-March-2009_"
+capturesPrefix: "./captures/french_flows-31-March-2009_"
 
 # chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
-capturesVideoPrefix: "./captures/video/video_tourist_flows-31-March-2009-"
+capturesVideoPrefix: "./captures/video/video_french_flows-31-March-2009-"
 
 # mpg, mp4, avi, ogv
 videoFormat: ogv

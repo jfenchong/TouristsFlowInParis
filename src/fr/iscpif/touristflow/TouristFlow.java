@@ -260,9 +260,9 @@ public class TouristFlow extends PApplet {
         stroke(255);
         fill(255);
         strokeWeight(2);
-        if (App.db.getShowLegend()) {
+        //if (App.db.getShowLegend()) {
             Affichage.afficheEchelle();
-        }
+        //}
 
         noStroke();
 
