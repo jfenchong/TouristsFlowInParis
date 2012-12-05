@@ -1,3 +1,8 @@
+
+# est ce qu'on veut utiliser en utilisant l'algo de quention (donen des couleur peu intenses)
+# ou celui de julian?
+smoothMaxQuentinStyle: true
+
 # chaine prefixe du chemin vers les graphes
 # prefixe
 # Prefixe.
@@ -13,7 +18,7 @@ nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/donnees/nb_roam_03_31.csv"
 roamingBTScsvSeparator: ";"
 
 # chemin de sortie des captures (préfixe) quand on appuie sur 's'
-capturesPrefix: "./captures/touristlows-31_March_2009_"
+capturesPrefix: "./captures/tourist_flows-31_March_2009_"
 
 # chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
 capturesVideoPrefix: "./captures/video/tourist_flows-31_March_2009_"
@@ -34,17 +39,18 @@ supprimerCapturesApresVideo: false
 # icone utilise pour la heatmap
 heatMapSprite: "./ressources/ppp.png"
 
-# ATTENTION aux espaces !
-arrowsPrefix: "./ressources/Arrow31 March 2009 "
-
-# attention.. aux.. espaces..
+# le chemin, prefixe, ou on va enregister les fleches: attention.. aux.. espaces..
 writeArrowsPrefix: "./Arrow roaming "
 
 # creer fleches depuis oursins?
 # d'apres quentin:
 # mettre a true si l'on veut creer les fleches depuis les oursins
 # sinon mettre false, et ca va charger des fichiers csv deja prepares
+# bon pour le moment on laisse sur true meme si c'est bcp plus long
 createArrowsFromUrchins: true
+
+# voici ou sont les CSV de fleches deja preparee - ATTENTION aux espaces !
+arrowsPrefix: "./ressources/Arrow31 March 2009 "
 
 # set to true to enable proxy
 useProxy: false
@@ -72,3 +78,5 @@ screenHeight: 900
 # fond de carte: si useMBTiles est vrai, alors cela utilise le fichier de fond de cartes
 useTiles: true
 pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_toprint.mbtiles"
+
+

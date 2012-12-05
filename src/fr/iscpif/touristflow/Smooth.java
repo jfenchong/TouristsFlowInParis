@@ -117,17 +117,20 @@ public class Smooth {
         int endColor = p.color(255, 0, 0);
 
         float maxValue = 0f;
-        /*
-         for (int i = 0; i < buff1[0].length; i++) {
-         if (buff1[0][i] != -1) {
-         if (buff1Score[cpt] > maxValue) {
-         maxValue = buff1Score[cpt];
-         }
-         cpt++;
-         }
-         }
-         * */
-        maxValue = App.db.getNodeMax();
+
+        if (App.cf.smoothMaxQuentinStyle) {
+            for (int i = 0; i < buff1[0].length; i++) {
+                if (buff1[0][i] != -1) {
+                    if (buff1Score[cpt] > maxValue) {
+                        maxValue = buff1Score[cpt];
+                    }
+                    cpt++;
+                }
+            }
+        } else {
+
+            maxValue = App.db.getNodeMax();
+        }
 
         p.noStroke();
         cpt = 0;

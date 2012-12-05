@@ -76,12 +76,20 @@ public final class Config {
     
     public final Boolean supprimerCapturesApresVideo;
     
+    public final Boolean smoothMaxQuentinStyle;
+    
     public Config(String path) {
         Map map = new HashMap();
         try {
             map = loadFromStream(path);
         } catch (FileNotFoundException ex) {
             Exceptions.printStackTrace(ex);
+        }
+        
+        if (map.containsKey("smoothMaxQuentinStyle")) {
+            smoothMaxQuentinStyle = (Boolean) map.get("smoothMaxQuentinStyle");
+        } else {
+            smoothMaxQuentinStyle = true;
         }
         if (map.containsKey("inputGraphPrefix")) {
             inputGraphPrefix = (String) map.get("inputGraphPrefix");
@@ -94,6 +102,7 @@ public final class Config {
         } else {
             nbRoamingBTSmoy = "";
         }
+         
         
         if (map.containsKey("roamingBTScsvSeparator")) {
             roamingBTScsvSeparator = (String) map.get("roamingBTScsvSeparator");
