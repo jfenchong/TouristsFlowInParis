@@ -3,19 +3,20 @@
 # Prefixe.
 # PREFIXE
 # ok?
-inputGraphPrefix: "/Users/jfenchong/Documents/these/donnees/francais/gexf/fr_03_31_"
+inputGraphPrefix: "/Users/jfenchong/Documents/these/donnees/gexf_roam_tranchelongue_filtre30/filtre_roaming_03_31_"
+#inputGraphPrefix: "/Users/jfenchong/Documents/these/donnees/francais/gexf_filtre30/filt_30_fr_03_31_"
 
 # ?
-nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/donnees/francais/nb_ind_bts/nb_fr_bts_03_31.csv"
-
+nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/donnees/nb_roam_03_31.csv"
+#nbRoamingBTSmoy: "/Users/jfenchong/Documents/these/donnees/francais/nb_ind_bts/nb_fr_bts_03_31.csv"
 # separateur de colonnes pour le csv "nbRoamingBTSmoy"
 roamingBTScsvSeparator: ";"
 
 # chemin de sortie des captures (préfixe) quand on appuie sur 's'
-capturesPrefix: "./captures/french_flows-31-March-2009_"
+capturesPrefix: "./captures/touristlows-31_March_2009_"
 
 # chemin de sortie des captures "video" (préfixe) quand on appuie sur 'f'
-capturesVideoPrefix: "./captures/video/video_french_flows-31-March-2009-"
+capturesVideoPrefix: "./captures/video/tourist_flows-31_March_2009_"
 
 # mpg, mp4, avi, ogv
 videoFormat: ogv
@@ -70,4 +71,4 @@ screenHeight: 900
 
 # fond de carte: si useMBTiles est vrai, alors cela utilise le fichier de fond de cartes
 useTiles: true
-pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_4.mbtiles"
+pathToTiles: "jdbc:sqlite:/Users/jfenchong/Documents/MapBox/export/idf_toprint.mbtiles"
