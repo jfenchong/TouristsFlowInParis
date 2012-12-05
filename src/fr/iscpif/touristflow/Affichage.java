@@ -275,12 +275,12 @@ public class Affichage {
             p.textAlign(PConstants.CENTER);
             if (App.db.isBiweight()) {
                 p.fill(255);
-                p.text("DENSITE D'OCCUPATION DES BTS ", p.width / 2, (float) (p.height / 16.317));
-                p.text("Méthode de BIWEIGHT", p.width / 2, (float) (p.height / 12.238));
+                p.text("Lissage de l'intensité de présence d'individus dans les stations ", p.width / 2, (float) (p.height / 16.317));
+                p.text("Méthode de biweight", p.width / 2, (float) (p.height / 12.238));
             } else if (App.db.isShepard()) {
                 p.fill(255);
-                p.text("DENSITE D'OCCUPATION DES BTS ", p.width / 2, (float) (p.height / 16.317));
-                p.text("Méthode de SHEPARD", p.width / 2, (float) (p.height / 12.238));
+                p.text("Lissage de l'intensité de présence d'individus dans les stations ", p.width / 2, (float) (p.height / 16.317));
+                p.text("Méthode de shepard", p.width / 2, (float) (p.height / 12.238));
             }
 
             if (App.db.isLissageDistri()) {
@@ -365,13 +365,13 @@ public class Affichage {
         PFont font2 = App.cf.fonts.size_20;
         p.textFont(font2);
         if ((!App.db.isLog()) && (App.db.isEdge() && (!App.db.isBoxCox()) || App.db.isNode()) && (!App.db.isPetit()) && (!App.db.isChaud())) {
-            p.text("Distribution Brute ( par plage de 4h )", p.width / 2, (float) (p.height / 16.317));
+            p.text("Distribution Brute", p.width / 2, (float) (p.height / 16.317));
         } else if (App.db.isLog() && App.db.isEdge() && (!App.db.isPetit()) && (!App.db.isChaud())) {
-            p.text("Distribution Logarithmique ( par plage de 4h )", p.width / 2, (float) (p.height / 16.317));
+            p.text("Distribution Logarithmique ", p.width / 2, (float) (p.height / 16.317));
         } else if (App.db.isEdge() && (!App.db.isLog()) && App.db.isPetit() && (!App.db.isChaud())) {
-            p.text("Distribution en exp(1/x) ( par plage de 4h )", p.width / 2, (float) (p.height / 16.317));
+            p.text("Distribution en exp(1/x)", p.width / 2, (float) (p.height / 16.317));
         } else if (App.db.isBoxCox()) {
-            p.text("Distribution normalisée ( par plage de 4h )", p.width / 2, (float) (p.height / 16.317));
+            p.text("Distribution transformée par une Box Cox", p.width / 2, (float) (p.height / 16.317));
         }
         PFont font3 = App.cf.fonts.size_15;
         p.textFont(font3);
@@ -379,7 +379,7 @@ public class Affichage {
             p.text("Mise en avant des Arcs de poids fort ( variation sur l'épaisseur )", p.width / 2, (float) (p.height / 12.238));
         }
         if (App.db.isEdge() && (!App.db.isPetit()) && (!App.db.isChaud()) && App.db.isBoxCox()) {
-            p.text("Transformation du poids par la méthode de box cox", p.width / 2, (float) (p.height / 12.238));
+            p.text("Transformation du nombre de déplacements entre stations par la méthode de box cox", p.width / 2, (float) (p.height / 12.238));
         } else if (App.db.isEdge() && (!App.db.isLog()) && App.db.isPetit() && (!App.db.isChaud())) {
             p.text("Mise en avant des Arcs de courte longueur ( variation sur l'oppacité, on conserve par ailleur la variation d'épaisseur )", p.width / 2, (float) (p.height / 12.238));
         }
